@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BGMI Tournament</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #0f0f1a; color: #fff; margin: 0; }
+  header { background: #1e1e2f; padding: 25px 15px; text-align: center; }
+  header h1 { color: #ffcc00; margin: 0 0 8px; }
+  .btn { display: inline-block; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 10px 5px 0; }
+  .yt-btn { background: #ff0000; }
+  .yt-btn:hover { background: #cc0000; }
+  .ig-btn { background: #c13584; }
+  .ig-btn:hover { background: #9b2a69; }
+  .kick-btn { background: #53fc18; color: #000; }
+.kick-btn:hover { background: #3fd10f; }
+.discord-btn { background: #052d5c; color: #fff; }
+  section { padding: 20px; max-width: 800px; margin: auto; }
+  h2 { color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: 5px; }
+  .box { background: #1e1e2f; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+  input, select { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: none; box-sizing: border-box; }
+  button { background: #ffcc00; color: #000; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; }
+  button:hover { background: #e6b800; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #444; padding: 8px; text-align: center; }
+  th { background: #333; color: #ffcc00; }
+  #msg { color: #ff5252; font-weight: bold; margin-top: 10px; }
+  footer { text-align: center; padding: 15px; background: #1e1e2f; margin-top: 30px; }
+  footer a { color: #ffcc00; }
+  #successPage { display: none; text-align: center; padding: 30px 15px; max-width: 600px; margin: auto; }
+  #successPage h1 { color: #00e676; }
+  .big-id { font-size: 26px; color: #ffcc00; font-weight: bold; letter-spacing: 2px; }
+  .details p { text-align: left; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<!-- MAIN PAGE -->
+<div id="mainPage">
+  <header>
+    <h1>🔥 BGMI Tournament 🔥</h1>
+    <p>Register your team and play with your squad</p>
+    <a class="btn yt-btn" href="https://youtube.com/@tournament_hun_official?si=8JN9kY490FjS-Jnn" target="_blank">▶ YouTube</a>
+    <a class="btn ig-btn" href="https://www.instagram.com/gaming_hub_official_01?stkn=MWFna29sMWF0MTFrNA==" target="_blank">📸 Instagram</a>
+    <a class="btn kick-btn" href="https://kick.com/gaming-hub-official" target="_blank">🎮 Kick</a>
+    <a class="btn" style="background:#5865F2; color:#fff;" href="https://discord.gg/xDNTAjJKx" target="_blank">💬 Discord</a>
+  </header>
+
+  <section>
+    <h2>Tournament Info</h2>
+    <div class="box">
+      <p>📅 Date: To be announced</p>
+      <p>🎮 Mode: Squad / Duo / Solo</p>
+      <p>💰 Entry Fee: Free</p>
+      <p>🏆 Prize Pool: To be announced</p>
+    </div>
+
+    <h2>Rules</h2>
+    <div class="box">
+      <p>1. Each team can have a maximum of 4 players.</p>
+      <p>2. Hacking or cheating of any kind means instant disqualification.</p>
+      <p>3. Be on time for your match. Late teams will not be allowed in.</p>
+    </div>
+
+    <h2>Match Schedule</h2>
+    <div class="box">
+      <table>
+        <tr><th>Match</th><th>Date</th><th>Time</th></tr>
+        <tr><td>Match 1</td><td>Soon</td><td>Soon</td></tr>
+        <tr><td>Match 2</td><td>Soon</td><td>Soon</td></tr>
+      </table>
+    </div>
+
+    <h2>Team Registration</h2>
+    <div class="box">
+      <input type="text" id="team" placeholder="Team name">
+      <input type="text" id="captain" placeholder="Captain name">
+      <input type="text" id="bgmiid" placeholder="Captain's BGMI ID">
+      <input type="email" id="email" placeholder="Captain's email">
+      <select id="mode">
+        <option>Squad</option>
+        <option>Duo</option>
+        <option>Solo</option>
+      </select>
+      <button onclick="registerTeam()">Register</button>
+      <p id="msg"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Questions? Email: <a href="mailto:shreyasgamerz05@gmail.com">shreyasgamerz05@gmail.com</a></p>
+    <p>YouTube: <a href="https://youtube.com/@tournament_hun_official?si=8JN9kY490FjS-Jnn" target="_blank">@tournament_hub_official</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/gaming_hub_official_01?stkn=MWFna29sMWF0MTFrNA==" target="_blank">@gaming_hub_official_01</a></p>
+    <p>© BGMI Tournament</p>
+  </footer>
+</div>
+
+<!-- SUCCESS PAGE (shows after registering) -->
+<div id="successPage">
+  <h1>✅ Registration Successful!</h1>
+  <p>Your team is registered for the BGMI Tournament.</p>
+
+  <div class="box">
+    <p>Your Registration ID</p>
+    <p class="big-id" id="regId"></p>
+    <p>Save or screenshot this ID. You may need it later.</p>
+  </div>
+
+  <div class="box details">
+    <p><b>Team:</b> <span id="sTeam"></span></p>
+    <p><b>Captain:</b> <span id="sCaptain"></span></p>
+    <p><b>BGMI ID:</b> <span id="sId"></span></p>
+    <p><b>Email:</b> <span id="sEmail"></span></p>
+    <p><b>Mode:</b> <span id="sMode"></span></p>
+  </div>
+
+  <p>Follow us for match updates:</p>
+  <a class="btn yt-btn" href="https://youtube.com/@tournament_hun_official?si=8JN9kY490FjS-Jnn" target="_blank">▶ YouTube</a>
+  <a class="btn ig-btn" href="https://www.instagram.com/gaming_hub_official_01?stkn=MWFna29sMWF0MTFrNA==" target="_blank">📸 Instagram</a>
+  <br><br>
+  <button onclick="goBack()">← Back to Home</button>
+</div>
+
+<script>
+function registerTeam() {
+  var team = document.getElementById("team").value.trim();
+  var captain = document.getElementById("captain").value.trim();
+  var id = document.getElementById("bgmiid").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var mode = document.getElementById("mode").value;
+  var msg = document.getElementById("msg");
+
+  if (team === "" || captain === "" || id === "" || email === "") {
+    msg.textContent = "Please fill in all the details.";
+    return;
+  }
+  if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+    msg.textContent = "Please enter a valid email address.";
+    return;
+  }
+  msg.textContent = "";
+
+  var regId = "BGMI-" + Math.floor(1000 + Math.random() * 9000);
+
+  document.getElementById("regId").textContent = regId;
+  document.getElementById("sTeam").textContent = team;
+  document.getElementById("sCaptain").textContent = captain;
+  document.getElementById("sId").textContent = id;
+  document.getElementById("sEmail").textContent = email;
+  document.getElementById("sMode").textContent = mode;
+
+  document.getElementById("mainPage").style.display = "none";
+  document.getElementById("successPage").style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+function goBack() {
+  document.getElementById("successPage").style.display = "none";
+  document.getElementById("mainPage").style.display = "block";
+  document.getElementById("team").value = "";
+  document.getElementById("captain").value = "";
+  document.getElementById("bgmiid").value = "";
+  document.getElementById("email").value = "";
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>

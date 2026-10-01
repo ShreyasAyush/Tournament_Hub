@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaderboard - BGMI Tournament</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #0f0f1a; color: #fff; margin: 0; }
+  header { background: #1e1e2f; padding: 25px 15px; text-align: center; }
+  header h1 { color: #ffcc00; margin: 0 0 8px; }
+  .btn { display: inline-block; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 10px 5px 0; }
+  .home-btn { background: #ffcc00; color: #000; }
+  .yt-btn { background: #ff0000; }
+  .ig-btn { background: #c13584; }
+  section { padding: 20px; max-width: 800px; margin: auto; }
+  h2 { color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: 5px; }
+  .box { background: #1e1e2f; padding: 15px; border-radius: 10px; margin-bottom: 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #444; padding: 10px; text-align: center; }
+  th { background: #333; color: #ffcc00; }
+  tr.gold td { background: #3a3200; font-weight: bold; }
+  tr.silver td { background: #2c2c33; font-weight: bold; }
+  tr.bronze td { background: #33200f; font-weight: bold; }
+  footer { text-align: center; padding: 15px; background: #1e1e2f; margin-top: 30px; }
+  footer a { color: #ffcc00; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏆 BGMI Tournament Leaderboard 🏆</h1>
+  <a class="btn home-btn" href="index.html">← Back to Home</a>
+</header>
+
+<section>
+  <h2>Team Standings</h2>
+  <div class="box">
+    <table>
+      <thead>
+        <tr><th>Rank</th><th>Team</th><th>Matches</th><th>Kills</th><th>Placement Pts</th><th>Total</th></tr>
+      </thead>
+      <tbody id="board"></tbody>
+    </table>
+  </div>
+
+  <h2>Points System</h2>
+  <div class="box">
+    <p>🎯 Each kill = 1 point</p>
+    <p>🥇 1st place = 10 pts | 🥈 2nd = 6 pts | 🥉 3rd = 5 pts</p>
+    <p>4th = 4 pts | 5th = 3 pts | 6th = 2 pts | 7th-8th = 1 pt | 9th and below = 0 pts</p>
+  </div>
+</section>
+
+<footer>
+  <p>© BGMI Tournament</p>
+</footer>
+
+<script>
+// EDIT ONLY THIS LIST after every match.
+// Format: { team: "Name", matches: 3, kills: 12, placementPts: 20 }
+var teams = [
+  { team: "Team Alpha",  matches: 3, kills: 14, placementPts: 21 },
+  { team: "Team Bravo",  matches: 3, kills: 10, placementPts: 16 },
+  { team: "Team Charlie", matches: 3, kills: 8,  placementPts: 12 },
+  { team: "Team Delta",  matches: 3, kills: 6,  placementPts: 9 }
+];
+
+teams.forEach(function(t) { t.total = t.kills + t.placementPts; });
+teams.sort(function(a, b) { return b.total - a.total; });
+
+var html = "";
+teams.forEach(function(t, i) {
+  var cls = i === 0 ? "gold" : i === 1 ? "silver" : i === 2 ? "bronze" : "";
+  var medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : (i + 1);
+  html += '<tr class="' + cls + '"><td>' + medal + '</td><td>' + t.team + '</td><td>' +
+          t.matches + '</td><td>' + t.kills + '</td><td>' + t.placementPts + '</td><td>' + t.total + '</td></tr>';
+});
+document.getElementById("board").innerHTML = html;
+</script>
+</body>
+</html>
